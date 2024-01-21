@@ -1,0 +1,48 @@
+<div class="flex flex-col md:flex-row h-[70vh] w-[60vw] md:w-[80vw]  md:h-[60vh] p-5">
+  <div class="flex flex-col justify-center h-[30vh] md:h-[55vh] items-center w-[50vw] pb-5 md:pb-0 md:w-[40vw] border-2 border-blue-600 shadow-lg shadow-slate-500">
+    <img class="h-[20vh] md:h-[30vh]" src="{{pokemon!.sprites.front_default}}"/>
+    <h1 class="text-3xl pb-2">{{pokemon!.name | titlecase}}</h1>
+    <h1>Especie: {{pokemon!.species.name}}</h1>
+    <div class="flex flex-row">
+      <h1>Tipo:</h1>
+      @for (tipo of pokemon!.types; track $index) {
+        <h1 class="pl-2 text-{{tipo.type.name | color}}">{{tipo.type.name}}</h1>
+      }
+    </div>
+  </div>
+  <div class="flex flex-col justify-center items-center w-[50vw] md:w-[40vw] mt-5 md:mt-0">
+    <table class="w-[50vw] md:w-[30vw] border-2 border-blue-600 text-left md:h-[30vh] h-[15vh]">
+      <tr>
+        <th class="w-[10vw] pl-5">Habs</th>
+        <td class="text-right pr-5">{{getAbilities()}}</td>
+      </tr>
+    </table>
+
+    <table class="w-[50vw] md:w-[30vw] border-2 md: boder-t-0 md:border-b-2 md:border-l-2 md:border-r-2 border-blue-600 text-left h-[20vh] md:h-[30vh] shadow-lg shadow-slate-500 mt-5 md:mt-0">
+      <tr>
+        <th class="w-[10vw] pl-5">XP base</th>
+        <td class="text-right pr-5">{{pokemon!.base_experience}}</td>
+      </tr>
+      <tr>
+        <th class="w-[10vw] pl-5">Altura</th>
+        <td class="text-right pr-5">{{pokemon!.height}}</td>
+      </tr>
+      <tr>
+        <th class="w-[10vw] pl-5">Peso</th>
+        <td class="text-right pr-5">{{pokemon!.weight}}</td>
+      </tr>
+      <tr>
+        <th class="w-[10vw] pl-5">Orden</th>
+        <td class="text-right pr-5">{{pokemon!.order}}</td>
+      </tr>
+    </table>
+
+  </div>
+
+</div>
+
+<div class="flex justify-center items-center w-[60vw] md:w-[40vw] h-[10vh] pt-5 md:pt-0">
+    <button class="{{(pokemon!.id - 1 < 1 ? 'bg-slate-300 hover:bg-slate-300' : 'bg-blue-500 hover:bg-blue-700')}} text-white font-bold py-2 px-4 rounded" [routerLink]="['/pokemon', (pokemon!.id - 1 < 1 ? 1 : pokemon!.id - 1)]" >Anterior</button>
+    <div class="w-[1vw]"></div>
+    <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" [routerLink]="['/pokemon', pokemon!.id + 1]">Siguiente</button>
+</div>

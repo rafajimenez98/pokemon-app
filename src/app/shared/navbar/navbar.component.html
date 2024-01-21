@@ -1,0 +1,7 @@
+<div class="h-[80vh] md:h-[70vh] scroll-auto overflow-auto">
+  @for (pokemon of getPokemons(); track $index) {
+    <div class="flex justify-center items-center">
+      <button class="text-left pl-2 mt-2 w-[35vw] md:w-[15vw] bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 rounded" [routerLink]="['/pokemon', $index + 1]">{{$index + 1}}.- {{parseString(pokemon) | titlecase}}</button>
+    </div>
+  }
+</div>
