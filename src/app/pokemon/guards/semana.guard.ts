@@ -17,7 +17,7 @@ export class PokemonLoadGuard implements CanLoad {
 
     const currentDay = new Date().getDay();
 
-    if (currentDay >= 1 && currentDay <= 5) {
+    if (currentDay >= 0 && currentDay <= 5) {
       return new Observable<boolean>(observer => {
         setTimeout(() => {
           observer.next(true);
